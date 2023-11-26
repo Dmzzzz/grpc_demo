@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package com.grpc.example.grpcDemo;
+
+option java_multiple_files = true;
+
+message GetGeoInfoRequest {
+    int32 geo_code = 1;
+}
+
+message GetGeoInfoResponse {
+    int32 geo_code = 1;
+    string name = 2;
+}
+
+
+
+service GeoService {
+    // unary
+    rpc GetGeoInfo(GetGeoInfoRequest) returns (GetGeoInfoResponse) {}
+    rpc GetAllGeo(google.protobuf.Empty) returns (stream GetGeoInfoResponse) {}
+
+}
